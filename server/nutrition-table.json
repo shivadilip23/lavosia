@@ -1,0 +1,227 @@
+[
+  {
+    "name": "cooked basmati rice",
+    "aliases": ["basmati rice", "white rice", "cooked white rice", "plain rice", "steamed rice", "boiled rice", "chawal", "rice"],
+    "per100g": { "kcal": 130, "protein_g": 2.7, "carbs_g": 28.2, "fat_g": 0.3 }
+  },
+  {
+    "name": "cooked brown rice",
+    "aliases": ["brown rice", "cooked brown rice", "steamed brown rice"],
+    "per100g": { "kcal": 112, "protein_g": 2.6, "carbs_g": 23.5, "fat_g": 0.9 }
+  },
+  {
+    "name": "roti",
+    "aliases": ["chapati", "phulka", "whole wheat roti", "wheat flatbread", "roti canai"],
+    "per100g": { "kcal": 264, "protein_g": 8.0, "carbs_g": 52.0, "fat_g": 3.0 }
+  },
+  {
+    "name": "paratha",
+    "aliases": ["plain paratha", "aloo paratha", "layered flatbread"],
+    "per100g": { "kcal": 320, "protein_g": 6.5, "carbs_g": 48.0, "fat_g": 12.0 }
+  },
+  {
+    "name": "naan",
+    "aliases": ["plain naan", "garlic naan", "butter naan", "tandoori naan"],
+    "per100g": { "kcal": 310, "protein_g": 9.0, "carbs_g": 54.0, "fat_g": 6.0 }
+  },
+  {
+    "name": "cooked dal",
+    "aliases": ["dal", "dhal", "daal", "yellow dal", "toor dal", "moong dal", "tadka dal", "dal tadka", "lentil soup", "cooked lentils", "dal fry"],
+    "per100g": { "kcal": 105, "protein_g": 6.8, "carbs_g": 16.5, "fat_g": 1.8 }
+  },
+  {
+    "name": "dal makhani",
+    "aliases": ["creamy black lentils", "black dal", "maa ki dal"],
+    "per100g": { "kcal": 150, "protein_g": 5.5, "carbs_g": 14.0, "fat_g": 8.5 }
+  },
+  {
+    "name": "chana masala",
+    "aliases": ["chole", "chickpea curry", "cooked chickpeas", "garbanzo curry"],
+    "per100g": { "kcal": 140, "protein_g": 6.0, "carbs_g": 20.0, "fat_g": 4.5 }
+  },
+  {
+    "name": "rajma",
+    "aliases": ["kidney bean curry", "cooked red kidney beans", "rajma masala"],
+    "per100g": { "kcal": 125, "protein_g": 5.8, "carbs_g": 18.2, "fat_g": 3.5 }
+  },
+  {
+    "name": "mixed vegetable sabzi",
+    "aliases": ["sabzi", "subzi", "dry vegetable curry", "mixed veg", "vegetable curry", "bhaji", "aloo gobi", "bhindi masala"],
+    "per100g": { "kcal": 95, "protein_g": 2.5, "carbs_g": 11.0, "fat_g": 5.0 }
+  },
+  {
+    "name": "idli",
+    "aliases": ["steamed idli", "rice cake", "south indian idli"],
+    "per100g": { "kcal": 140, "protein_g": 4.0, "carbs_g": 29.0, "fat_g": 0.5 }
+  },
+  {
+    "name": "dosa",
+    "aliases": ["plain dosa", "masala dosa", "crispy crepe", "sada dosa"],
+    "per100g": { "kcal": 170, "protein_g": 4.0, "carbs_g": 30.0, "fat_g": 4.0 }
+  },
+  {
+    "name": "sambar",
+    "aliases": ["vegetable sambar", "south indian lentil stew"],
+    "per100g": { "kcal": 65, "protein_g": 3.0, "carbs_g": 10.0, "fat_g": 1.5 }
+  },
+  {
+    "name": "paneer",
+    "aliases": ["indian cottage cheese", "paneer cubes", "raw paneer", "fresh paneer"],
+    "per100g": { "kcal": 265, "protein_g": 18.3, "carbs_g": 3.6, "fat_g": 20.8 }
+  },
+  {
+    "name": "paneer tikka",
+    "aliases": ["grilled paneer", "tandoori paneer", "paneer curry", "palak paneer", "shahi paneer"],
+    "per100g": { "kcal": 220, "protein_g": 14.0, "carbs_g": 6.0, "fat_g": 16.0 }
+  },
+  {
+    "name": "cooked chicken breast",
+    "aliases": ["grilled chicken breast", "boiled chicken breast", "chicken breast", "roasted chicken breast", "tandoori chicken", "chicken tikka"],
+    "per100g": { "kcal": 165, "protein_g": 31.0, "carbs_g": 0.0, "fat_g": 3.6 }
+  },
+  {
+    "name": "chicken curry",
+    "aliases": ["chicken gravy", "murgh curry", "chicken masala"],
+    "per100g": { "kcal": 180, "protein_g": 18.0, "carbs_g": 4.5, "fat_g": 10.0 }
+  },
+  {
+    "name": "cooked salmon",
+    "aliases": ["grilled salmon", "pan seared salmon", "baked salmon", "salmon fillet", "fish fillet", "grilled fish"],
+    "per100g": { "kcal": 206, "protein_g": 22.0, "carbs_g": 0.0, "fat_g": 12.3 }
+  },
+  {
+    "name": "boiled egg",
+    "aliases": ["hard boiled egg", "soft boiled egg", "whole egg", "cooked egg"],
+    "per100g": { "kcal": 155, "protein_g": 12.6, "carbs_g": 1.1, "fat_g": 10.6 }
+  },
+  {
+    "name": "scrambled egg",
+    "aliases": ["egg bhurji", "fried egg", "omelette", "egg omelet"],
+    "per100g": { "kcal": 180, "protein_g": 12.0, "carbs_g": 1.5, "fat_g": 14.0 }
+  },
+  {
+    "name": "cooked quinoa",
+    "aliases": ["quinoa", "boiled quinoa", "steamed quinoa"],
+    "per100g": { "kcal": 120, "protein_g": 4.4, "carbs_g": 21.3, "fat_g": 1.9 }
+  },
+  {
+    "name": "cooked oats",
+    "aliases": ["oatmeal", "porridge", "rolled oats", "cooked oatmeal"],
+    "per100g": { "kcal": 71, "protein_g": 2.5, "carbs_g": 12.0, "fat_g": 1.5 }
+  },
+  {
+    "name": "tofu",
+    "aliases": ["firm tofu", "silken tofu", "soy paneer", "pan fried tofu"],
+    "per100g": { "kcal": 83, "protein_g": 10.0, "carbs_g": 1.9, "fat_g": 4.8 }
+  },
+  {
+    "name": "edamame",
+    "aliases": ["steamed edamame", "soybeans", "green soybeans"],
+    "per100g": { "kcal": 122, "protein_g": 11.9, "carbs_g": 8.9, "fat_g": 5.2 }
+  },
+  {
+    "name": "greek yogurt",
+    "aliases": ["plain greek yogurt", "hung curd", "greek yoghurt"],
+    "per100g": { "kcal": 97, "protein_g": 10.0, "carbs_g": 3.6, "fat_g": 5.0 }
+  },
+  {
+    "name": "curd",
+    "aliases": ["dahi", "plain yogurt", "yogurt", "plain curd", "raita"],
+    "per100g": { "kcal": 61, "protein_g": 3.5, "carbs_g": 4.7, "fat_g": 3.3 }
+  },
+  {
+    "name": "whole milk",
+    "aliases": ["milk", "cow milk", "buffalo milk"],
+    "per100g": { "kcal": 62, "protein_g": 3.2, "carbs_g": 4.8, "fat_g": 3.4 }
+  },
+  {
+    "name": "olive oil",
+    "aliases": ["extra virgin olive oil", "vegetable oil", "cooking oil", "sunflower oil", "mustard oil"],
+    "per100g": { "kcal": 884, "protein_g": 0.0, "carbs_g": 0.0, "fat_g": 100.0 }
+  },
+  {
+    "name": "ghee",
+    "aliases": ["clarified butter", "desi ghee"],
+    "per100g": { "kcal": 900, "protein_g": 0.0, "carbs_g": 0.0, "fat_g": 100.0 }
+  },
+  {
+    "name": "butter",
+    "aliases": ["salted butter", "unsalted butter"],
+    "per100g": { "kcal": 717, "protein_g": 0.9, "carbs_g": 0.1, "fat_g": 81.1 }
+  },
+  {
+    "name": "cooked potato",
+    "aliases": ["boiled potato", "mashed potato", "roasted potato", "baked potato", "aloo"],
+    "per100g": { "kcal": 87, "protein_g": 1.9, "carbs_g": 20.1, "fat_g": 0.1 }
+  },
+  {
+    "name": "sweet potato",
+    "aliases": ["boiled sweet potato", "roasted sweet potato", "shakarkandi"],
+    "per100g": { "kcal": 86, "protein_g": 1.6, "carbs_g": 20.1, "fat_g": 0.1 }
+  },
+  {
+    "name": "steamed broccoli",
+    "aliases": ["broccoli", "cooked broccoli", "roasted broccoli"],
+    "per100g": { "kcal": 35, "protein_g": 2.4, "carbs_g": 7.2, "fat_g": 0.4 }
+  },
+  {
+    "name": "cooked spinach",
+    "aliases": ["spinach", "palak", "steamed spinach", "saag"],
+    "per100g": { "kcal": 23, "protein_g": 3.0, "carbs_g": 3.8, "fat_g": 0.3 }
+  },
+  {
+    "name": "tomato",
+    "aliases": ["fresh tomato", "cherry tomatoes", "chopped tomatoes", "tomato slice"],
+    "per100g": { "kcal": 18, "protein_g": 0.9, "carbs_g": 3.9, "fat_g": 0.2 }
+  },
+  {
+    "name": "onion",
+    "aliases": ["red onion", "sliced onion", "cooked onion", "sauteed onion"],
+    "per100g": { "kcal": 40, "protein_g": 1.1, "carbs_g": 9.3, "fat_g": 0.1 }
+  },
+  {
+    "name": "cucumber",
+    "aliases": ["cucumber slices", "fresh cucumber", "kheera"],
+    "per100g": { "kcal": 15, "protein_g": 0.7, "carbs_g": 3.6, "fat_g": 0.1 }
+  },
+  {
+    "name": "avocado",
+    "aliases": ["fresh avocado", "guacamole", "avocado slice"],
+    "per100g": { "kcal": 160, "protein_g": 2.0, "carbs_g": 8.5, "fat_g": 14.7 }
+  },
+  {
+    "name": "almonds",
+    "aliases": ["raw almonds", "roasted almonds", "badam"],
+    "per100g": { "kcal": 579, "protein_g": 21.2, "carbs_g": 21.6, "fat_g": 49.9 }
+  },
+  {
+    "name": "peanut butter",
+    "aliases": ["peanuts", "roasted peanuts", "groundnut butter"],
+    "per100g": { "kcal": 588, "protein_g": 25.0, "carbs_g": 20.0, "fat_g": 50.0 }
+  },
+  {
+    "name": "whole wheat bread",
+    "aliases": ["brown bread", "multigrain bread", "bread slice", "white bread", "toast"],
+    "per100g": { "kcal": 247, "protein_g": 12.0, "carbs_g": 41.0, "fat_g": 3.4 }
+  },
+  {
+    "name": "banana",
+    "aliases": ["fresh banana", "ripe banana", "kela"],
+    "per100g": { "kcal": 89, "protein_g": 1.1, "carbs_g": 22.8, "fat_g": 0.3 }
+  },
+  {
+    "name": "apple",
+    "aliases": ["fresh apple", "apple slices", "seb"],
+    "per100g": { "kcal": 52, "protein_g": 0.3, "carbs_g": 13.8, "fat_g": 0.2 }
+  },
+  {
+    "name": "biryani",
+    "aliases": ["chicken biryani", "veg biryani", "mutton biryani", "pulao", "vegetable pulao"],
+    "per100g": { "kcal": 175, "protein_g": 7.0, "carbs_g": 22.0, "fat_g": 6.5 }
+  },
+  {
+    "name": "cheddar cheese",
+    "aliases": ["cheese", "mozzarella", "parmesan", "shredded cheese", "cheese slice"],
+    "per100g": { "kcal": 403, "protein_g": 24.9, "carbs_g": 1.3, "fat_g": 33.1 }
+  }
+]

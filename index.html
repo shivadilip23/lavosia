@@ -1,0 +1,1305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Lavosia</title>
+  <meta name="description" content="Mobile nutrition and fitness tracker with Apple Fitness telemetry, Gemini-powered food image analysis, and smart pantry meal prep.">
+  <meta property="og:title" content="Lavosia">
+  <meta property="og:description" content="Mobile nutrition and fitness tracker with Apple Fitness telemetry, Gemini-powered food image analysis, and smart pantry meal prep.">
+  <meta property="og:type" content="website">
+  <link rel="stylesheet" href="/styles.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- App Inner Viewport -->
+  <div class="app-viewport-wrapper">
+    <div class="app-container">
+      <main class="screen-viewport">
+
+        <!-- ===================================================================
+             FEATURE: features/auth/
+             SCREEN 1: WELCOME SCREEN (Gateway)
+             =================================================================== -->
+        <section class="screen" id="screen-welcome">
+          <div style="display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; min-height:100%; padding:40px 20px;">
+            <!-- Lavosia Concentric Aura Rings Logo -->
+            <div style="position:relative; width:150px; height:150px; margin-bottom:32px;">
+              <svg viewBox="0 0 100 100" style="width:100%; height:100%;">
+                <circle cx="50" cy="50" r="42" fill="none" stroke="rgba(167, 139, 250, 0.2)" stroke-width="8"/>
+                <circle cx="50" cy="50" r="42" fill="none" stroke="#A78BFA" stroke-width="8" stroke-dasharray="264" stroke-dashoffset="65" stroke-linecap="round"/>
+                <circle cx="50" cy="50" r="30" fill="none" stroke="rgba(48, 209, 88, 0.2)" stroke-width="8"/>
+                <circle cx="50" cy="50" r="30" fill="none" stroke="#30D158" stroke-width="8" stroke-dasharray="188" stroke-dashoffset="40" stroke-linecap="round"/>
+                <circle cx="50" cy="50" r="18" fill="none" stroke="rgba(0, 229, 255, 0.2)" stroke-width="8"/>
+                <circle cx="50" cy="50" r="18" fill="none" stroke="#00E5FF" stroke-width="8" stroke-dasharray="113" stroke-dashoffset="20" stroke-linecap="round"/>
+              </svg>
+            </div>
+
+            <!-- Wordmark -->
+            <h1 style="font-size:42px; font-weight:800; letter-spacing:-0.03em; margin-bottom:80px; color:#8f4aff;">Lavosia</h1>
+
+            <!-- Gateway Buttons -->
+            <div style="width:100%; display:flex; flex-direction:column; gap:12px;"> 
+              <button class="btn-primary" data-route="screen-login" 
+                style="box-shadow: 0 2px 6px rgba(0, 0, 0, 0.12); border: 1px solid rgba(0, 0, 0, 0.2);"> 
+                Log In 
+              </button> 
+
+              <button class="btn-secondary" data-route="screen-signup" 
+                style="box-shadow: 0 2px 6px rgba(0, 0, 0, 0.12); border: 1px solid rgba(0, 0, 0, 0.2);"> 
+                Sign Up & Profile 
+              </button> 
+            </div>
+          </div>
+        </section>
+
+        <!-- ===================================================================
+             FEATURE: features/auth/
+             SCREEN 2: LOGIN SCREEN
+             =================================================================== -->
+        <section class="screen" id="screen-login">
+          <div class="screen-header">
+            <button class="back-btn" data-route-back="screen-welcome">
+              <svg viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6"/></svg> Back
+            </button>
+            <div style="width:40px;"></div>
+          </div>
+
+          <div class="large-title" style="margin-top:10px;">Welcome Back</div>
+
+          <div id="login-error-banner" class="banner error-banner" style="display:none; margin-bottom:14px; padding:12px 14px; border-radius:var(--radius-md); background:rgba(255,45,85,0.15); border:1px solid rgba(255,45,85,0.3); color:#FF6B8B; font-size:13px;">
+          </div>
+
+          <form id="login-form">
+            <div class="form-group">
+              <label class="form-label" for="login-username">Username</label>
+              <input type="text" id="login-username" class="form-input" placeholder="Enter your username" required autocomplete="username" autocorrect="off" autocapitalize="off" spellcheck="false">
+            </div>
+
+            <div class="form-group" style="margin-bottom:24px;">
+              <label class="form-label" for="login-password">Password</label>
+              <input type="password" id="login-password" class="form-input" placeholder="Enter password" required autocomplete="current-password">
+            </div>
+
+            <button type="submit" id="login-submit-btn" class="btn-primary" style="margin-bottom:24px;">
+              Log In to Dashboard
+            </button>
+
+            <div style="text-align:center;">
+              <span style="font-size:14px; color:var(--text-secondary);">New to Lavosia?</span>
+              <a href="#" class="card-link" data-route="screen-signup" style="margin-left:6px;">Create Account</a>
+            </div>
+          </form>
+        </section>
+
+        <!-- ===================================================================
+             FEATURE: features/auth/
+             SCREEN 3: SIGN UP & PROFILE SCREEN
+             =================================================================== -->
+        <section class="screen" id="screen-signup">
+          <div class="screen-header">
+            <button class="back-btn" data-route-back="screen-welcome">
+              <svg viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6"/></svg> Back
+            </button>
+            <span class="screen-title">New Profile</span>
+            <div style="width:40px;"></div>
+          </div>
+
+          <div class="large-title" style="margin-top:8px;">Sign Up & Stats</div>
+          <p style="font-size:13px; color:var(--text-secondary); margin-bottom:18px;">
+            Lavosia uses your biometric stats to calibrate your TDEE and daily nutrient rings.
+          </p>
+
+          <div id="signup-error-banner" class="banner error-banner" style="display:none; margin-bottom:14px; padding:12px 14px; border-radius:var(--radius-md); background:rgba(255,45,85,0.15); border:1px solid rgba(255,45,85,0.3); color:#FF6B8B; font-size:13px;">
+          </div>
+
+          <form id="signup-form">
+            <div class="form-group">
+              <label class="form-label" for="signup-username">Username</label>
+              <input type="text" id="signup-username" class="form-input" placeholder="e.g. alex_fitness" required minlength="3" maxlength="30" pattern="^[a-zA-Z0-9_]+$" autocomplete="username" autocorrect="off" autocapitalize="off" spellcheck="false">
+              <span style="font-size:11px; color:var(--text-muted); margin-top:3px; display:block;">3-30 letters, numbers, or underscores</span>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="signup-password">Password</label>
+              <input type="password" id="signup-password" class="form-input" placeholder="Min. 8 characters" required minlength="8" autocomplete="new-password">
+              <span style="font-size:11px; color:var(--text-muted); margin-top:3px; display:block;">Must be at least 8 characters long</span>
+            </div>
+
+            <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-bottom:16px;">
+              <div class="form-group" style="margin-bottom:0;">
+                <label class="form-label" for="signup-age">Age (Years)</label>
+                <input type="number" id="signup-age" class="form-input" placeholder="26" required>
+              </div>
+
+              <div class="form-group" style="margin-bottom:0;">
+                <label class="form-label" for="signup-gender">Gender</label>
+                <select id="signup-gender" class="form-select" required>
+                  <option value="" disabled selected>Choose gender</option>
+                  <option value="male">Male</option>
+                  <option value="female">Female</option>
+                  <option value="nonbinary">Other</option>
+                </select>
+              </div>
+            </div>
+
+            <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-bottom:16px;">
+              <div class="form-group" style="margin-bottom:0;">
+                <label class="form-label" for="signup-height">Height (cm)</label>
+                <input type="number" id="signup-height" class="form-input" placeholder="180" required>
+              </div>
+
+              <div class="form-group" style="margin-bottom:0;">
+                <label class="form-label" for="signup-weight">Weight (kg)</label>
+                <input type="number" id="signup-weight" class="form-input" placeholder="75" required>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="signup-diet">Dietary Preference</label>
+              <select id="signup-diet" class="form-select" required>
+                <option value="" disabled selected>Choose dietary preference</option>
+                <option value="Non-Veg">Non-Veg (High Protein Meat & Fish)</option>
+                <option value="Veg">Vegetarian (Dairy & Plant Proteins)</option>
+                <option value="Vegan">Vegan (100% Plant-Based)</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="signup-activity">Physical Activity Level</label>
+              <select id="signup-activity" class="form-select" required>
+                <option value="" disabled selected>Choose physical activity level</option>
+                <option value="sedentary">Sedentary (light or no exercise)</option>
+                <option value="light">Light (exercise 1–3 times a week)</option>
+                <option value="moderate">Moderate (exercise 4–5 times a week)</option>
+                <option value="active">Active (daily or intense exercise 4–5 times a week)</option>
+                <option value="very_active">Very Active (intense exercise 6–7 times a week)</option>
+                <option value="extra_active">Extra Active (very intense training + physical job)</option>
+              </select>
+            </div>
+
+            <!-- Allergen Filter Checkboxes -->
+            <div class="form-group">
+              <label class="form-label" style="display:flex; justify-content:space-between; align-items:center;">
+                <span>Allergens & Sensitivities</span>
+                <span style="font-size:11px; font-weight:normal; color:var(--text-muted);">Optional (Filtered in recipes)</span>
+              </label>
+              <div id="signup-allergen-checkbox-list" style="display:grid; grid-template-columns:1fr 1fr; gap:8px; background:var(--bg-surface-elevated); padding:12px; border-radius:12px; border:1px solid var(--border-subtle);">
+                <label style="display:flex; align-items:center; gap:6px; font-size:12px; color:var(--text-primary); cursor:pointer;"><input type="checkbox" value="Milk" style="accent-color:var(--accent-lavender);"> Milk / Dairy</label>
+                <label style="display:flex; align-items:center; gap:6px; font-size:12px; color:var(--text-primary); cursor:pointer;"><input type="checkbox" value="Eggs" style="accent-color:var(--accent-lavender);"> Eggs</label>
+                <label style="display:flex; align-items:center; gap:6px; font-size:12px; color:var(--text-primary); cursor:pointer;"><input type="checkbox" value="Peanuts" style="accent-color:var(--accent-lavender);"> Peanuts</label>
+                <label style="display:flex; align-items:center; gap:6px; font-size:12px; color:var(--text-primary); cursor:pointer;"><input type="checkbox" value="Tree Nuts" style="accent-color:var(--accent-lavender);"> Tree Nuts</label>
+                <label style="display:flex; align-items:center; gap:6px; font-size:12px; color:var(--text-primary); cursor:pointer;"><input type="checkbox" value="Wheat" style="accent-color:var(--accent-lavender);"> Wheat / Gluten</label>
+                <label style="display:flex; align-items:center; gap:6px; font-size:12px; color:var(--text-primary); cursor:pointer;"><input type="checkbox" value="Soybeans" style="accent-color:var(--accent-lavender);"> Soybeans</label>
+                <label style="display:flex; align-items:center; gap:6px; font-size:12px; color:var(--text-primary); cursor:pointer;"><input type="checkbox" value="Fish" style="accent-color:var(--accent-lavender);"> Fish</label>
+                <label style="display:flex; align-items:center; gap:6px; font-size:12px; color:var(--text-primary); cursor:pointer;"><input type="checkbox" value="Crustacean Shellfish" style="accent-color:var(--accent-lavender);"> Shellfish</label>
+                <label style="display:flex; align-items:center; gap:6px; font-size:12px; color:var(--text-primary); cursor:pointer; grid-column:span 2;"><input type="checkbox" value="Sesame" style="accent-color:var(--accent-lavender);"> Sesame</label>
+              </div>
+            </div>
+
+
+            <button type="submit" class="btn-primary">
+              Complete Profile & Start Tracking
+            </button>
+          </form>
+        </section>
+
+        <!-- ===================================================================
+             FEATURE: features/dashboard/
+             SCREEN 4: DASHBOARD SCREEN (Central Hub)
+             =================================================================== -->
+        <section class="screen" id="screen-dashboard">
+          <header class="live-header">
+            <div class="live-header-text">
+              <div class="live-date" id="live-date"></div>
+              <div class="live-time" role="timer" aria-label="Current time">
+                <span id="live-time-hm">--:--</span><span class="live-time-sec" id="live-time-sec">:--</span><span class="live-time-period" id="live-time-period"></span>
+              </div>
+            </div>
+            <div class="profile-avatar-btn" data-route="screen-settings" title="Profile Settings">AR</div>
+          </header>
+
+          <div class="review-banner" id="dash-review-banner" hidden>
+            <div class="review-banner-text" aria-live="polite">
+              <strong id="dash-review-title"></strong>
+              <span id="dash-review-sub"></span>
+            </div>
+            <a href="#" class="card-link" id="dash-back-to-today">Back to today</a>
+          </div>
+
+          <!-- Activity Rings -->
+          <div class="rings-hero-card">
+            <div class="rings-telemetry-col">
+              <div class="ring-metric-group">
+                <div class="ring-label move">Move (Calories)</div>
+                <div class="ring-val-big" id="telemetry-move-val">1,280<span>/2,200 CAL</span></div>
+              </div>
+              <div class="ring-metric-group">
+                <div class="ring-label protein">Protein Target</div>
+                <div class="ring-val-big" id="telemetry-protein-val">118<span>/165 G</span></div>
+              </div>
+              <div class="ring-metric-group">
+                <div class="ring-label water">Hydration</div>
+                <div class="ring-val-big" id="telemetry-water-val">1.75<span>/2.8 L</span></div>
+              </div>
+            </div>
+
+            <div class="rings-svg-container">
+              <svg class="rings-svg" viewBox="0 0 140 140">
+                <circle class="ring-track" cx="70" cy="70" r="58" stroke="var(--ring-red-dim)"/>
+                <circle class="ring-fill" id="ring-fill-move" cx="70" cy="70" r="58" stroke="var(--ring-red)" stroke-dasharray="364.42" stroke-dashoffset="150"/>
+
+                <circle class="ring-track" cx="70" cy="70" r="42" stroke="var(--accent-lavender-dim)"/>
+                <circle class="ring-fill" id="ring-fill-protein" cx="70" cy="70" r="42" stroke="var(--accent-lavender)" stroke-dasharray="263.89" stroke-dashoffset="75"/>
+
+                <circle class="ring-track" cx="70" cy="70" r="26" stroke="var(--ring-cyan-dim)"/>
+                <circle class="ring-fill" id="ring-fill-water" cx="70" cy="70" r="26" stroke="var(--ring-cyan)" stroke-dasharray="163.36" stroke-dashoffset="60"/>
+              </svg>
+            </div>
+          </div>
+
+          <!-- Calories Budget Meter & Hourly Burn Chart -->
+          <div class="card">
+            <div class="card-title-row">
+              <div>
+                <div class="card-subtitle">CALORIES LEFT IN DAILY BUDGET</div>
+                <div style="font-family:var(--font-mono); font-size:28px; font-weight:800; color:var(--text-primary); margin-top:2px;">
+                  <span id="dash-cal-remaining">920</span>
+                  <span style="font-size:15px; color:var(--text-secondary);" id="dash-cal-budget-sub">/2,200 CAL</span>
+                </div>
+              </div>
+              <div style="display:flex; flex-direction:column; align-items:flex-end; gap:6px;">
+                <span class="health-score-pill grade-a" id="dash-status-pill">On Track</span>
+                <a href="#" class="card-link log-control" id="reset-calories-btn" style="font-size:12px;">Reset</a>
+              </div>
+            </div>
+
+            <div class="hourly-chart-container">
+              <div class="hourly-chart-bars">
+                <div class="chart-bar-wrap"><div class="chart-bar" id="chart-bar-0" style="height: 0%;"></div></div>
+                <div class="chart-bar-wrap"><div class="chart-bar" id="chart-bar-1" style="height: 0%;"></div></div>
+                <div class="chart-bar-wrap"><div class="chart-bar" id="chart-bar-2" style="height: 0%;"></div></div>
+                <div class="chart-bar-wrap"><div class="chart-bar" id="chart-bar-3" style="height: 0%;"></div></div>
+                <div class="chart-bar-wrap"><div class="chart-bar" id="chart-bar-4" style="height: 0%;"></div></div>
+                <div class="chart-bar-wrap"><div class="chart-bar" id="chart-bar-5" style="height: 0%;"></div></div>
+                <div class="chart-bar-wrap"><div class="chart-bar" id="chart-bar-6" style="height: 0%;"></div></div>
+                <div class="chart-bar-wrap"><div class="chart-bar" id="chart-bar-7" style="height: 0%;"></div></div>
+                <div class="chart-bar-wrap"><div class="chart-bar" id="chart-bar-8" style="height: 0%;"></div></div>
+                <div class="chart-bar-wrap"><div class="chart-bar" id="chart-bar-9" style="height: 0%;"></div></div>
+              </div>
+              <div class="chart-labels-row" style="justify-content:center;">
+                <span id="chart-progress-label">0% of daily budget logged</span>
+              </div>
+            </div>
+
+            <div class="log-control" style="display:flex; gap:8px; margin-top:16px;">
+              <input type="number" id="manual-calories-input" class="form-input" placeholder="Enter kcal" min="0" style="flex:1; padding:10px 12px; font-size:14px;">
+              <button class="btn-outline" id="manual-calories-add-btn" style="padding:10px 18px; font-size:13px; white-space:nowrap;">Add</button>
+            </div>
+          </div>
+
+          <!-- Nutrient Progress Bars -->
+          <div class="card">
+            <div class="card-title-row">
+              <span class="card-title">Macronutrient Split</span>
+              <div style="display:flex; align-items:center; gap:10px;">
+                <span class="card-subtitle">Daily Goals</span>
+                <a href="#" class="card-link log-control" id="reset-macros-btn" style="font-size:12px;">Reset</a>
+              </div>
+            </div>
+
+            <!-- Protein -->
+            <div style="margin-bottom:12px;">
+              <div style="display:flex; justify-content:space-between; font-size:12px; margin-bottom:4px;">
+                <span style="font-weight:700; color:var(--accent-lavender);">Protein</span>
+                <span id="bar-protein-text" style="font-family:var(--font-mono); color:var(--text-secondary);">118g / 165g</span>
+              </div>
+              <div style="height:8px; background:#2C2C2E; border-radius:4px; overflow:hidden;">
+                <div id="bar-protein-fill" style="width:72%; height:100%; background:var(--accent-lavender); border-radius:4px;"></div>
+              </div>
+              <div class="log-control" style="display:flex; gap:6px; margin-top:8px;">
+                <input type="number" id="manual-protein-input" class="form-input" placeholder="Add grams" min="0" style="flex:1; padding:8px 10px; font-size:13px;">
+                <button class="btn-outline" id="manual-protein-add-btn" style="padding:8px 14px; font-size:12px; white-space:nowrap; border-color:var(--accent-lavender); color:var(--accent-lavender);">Add</button>
+              </div>
+            </div>
+
+            <!-- Carbs -->
+            <div style="margin-bottom:12px;">
+              <div style="display:flex; justify-content:space-between; font-size:12px; margin-bottom:4px;">
+                <span style="font-weight:700; color:#FFA114;">Carbs</span>
+                <span id="bar-carbs-text" style="font-family:var(--font-mono); color:var(--text-secondary);">140g / 220g</span>
+              </div>
+              <div style="height:8px; background:#2C2C2E; border-radius:4px; overflow:hidden;">
+                <div id="bar-carbs-fill" style="width:64%; height:100%; background:#FFA114; border-radius:4px;"></div>
+              </div>
+              <div class="log-control" style="display:flex; gap:6px; margin-top:8px;">
+                <input type="number" id="manual-carbs-input" class="form-input" placeholder="Add grams" min="0" style="flex:1; padding:8px 10px; font-size:13px;">
+                <button class="btn-outline" id="manual-carbs-add-btn" style="padding:8px 14px; font-size:12px; white-space:nowrap; border-color:#FFA114; color:#FFA114;">Add</button>
+              </div>
+            </div>
+
+            <!-- Fats -->
+            <div style="margin-bottom:12px;">
+              <div style="display:flex; justify-content:space-between; font-size:12px; margin-bottom:4px;">
+                <span style="font-weight:700; color:var(--ring-red);">Healthy Fats</span>
+                <span id="bar-fats-text" style="font-family:var(--font-mono); color:var(--text-secondary);">42g / 65g</span>
+              </div>
+              <div style="height:8px; background:#2C2C2E; border-radius:4px; overflow:hidden;">
+                <div id="bar-fats-fill" style="width:65%; height:100%; background:var(--ring-red); border-radius:4px;"></div>
+              </div>
+              <div class="log-control" style="display:flex; gap:6px; margin-top:8px;">
+                <input type="number" id="manual-fats-input" class="form-input" placeholder="Add grams" min="0" style="flex:1; padding:8px 10px; font-size:13px;">
+                <button class="btn-outline" id="manual-fats-add-btn" style="padding:8px 14px; font-size:12px; white-space:nowrap; border-color:var(--ring-red); color:var(--ring-red);">Add</button>
+              </div>
+            </div>
+
+            <!-- Fiber -->
+            <div>
+              <div style="display:flex; justify-content:space-between; font-size:12px; margin-bottom:4px;">
+                <span style="font-weight:700; color:var(--ring-green);">Dietary Fiber</span>
+                <span id="bar-fiber-text" style="font-family:var(--font-mono); color:var(--text-secondary);">22g / 35g</span>
+              </div>
+              <div style="height:8px; background:#2C2C2E; border-radius:4px; overflow:hidden;">
+                <div id="bar-fiber-fill" style="width:63%; height:100%; background:var(--ring-green); border-radius:4px;"></div>
+              </div>
+              <div class="log-control" style="display:flex; gap:6px; margin-top:8px;">
+                <input type="number" id="manual-fiber-input" class="form-input" placeholder="Add grams" min="0" style="flex:1; padding:8px 10px; font-size:13px;">
+                <button class="btn-outline" id="manual-fiber-add-btn" style="padding:8px 14px; font-size:12px; white-space:nowrap; border-color:var(--ring-green); color:var(--ring-green);">Add</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Hydration Tracker Quick Log -->
+          <div class="card" style="display:flex; align-items:center; justify-content:space-between; padding:16px 20px;">
+            <div style="display:flex; align-items:center; gap:14px;">
+              <div style="width:42px; height:42px; border-radius:14px; background:rgba(0,229,255,0.18); display:flex; align-items:center; justify-content:center; color:var(--ring-cyan);">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"/></svg>
+              </div>
+              <div>
+                <div style="font-size:15px; font-weight:700; color:#1C1C1E;">Hydration Level</div>
+                <div style="font-size:12px; color:var(--text-secondary);" id="dash-hydration-sub">0L logged of 2.8L goal</div>
+              </div>
+            </div>
+            <div class="log-control" style="display:flex; flex-direction:column; align-items:flex-end; gap:6px;">
+              <button class="btn-outline" id="dash-quick-water-btn" style="padding:8px 14px; font-size:13px; border-color:var(--ring-cyan); color:var(--ring-cyan);">
+                +250 ml
+              </button>
+              <a href="#" class="card-link" id="reset-water-btn" style="font-size:12px;">Reset</a>
+            </div>
+          </div>
+
+          <!-- Quick Action Buttons -->
+          <div class="card-title-row" style="margin-top:24px;">
+            <span class="card-title">1-Tap Quick Actions</span>
+            <span class="card-subtitle">AI & Scanners</span>
+          </div>
+
+          <div class="quick-actions-grid">
+            <button class="action-card-btn" data-route="screen-scan-barcode">
+              <div class="action-icon coral">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 7V4h3M20 7V4h-3M4 17v3h3M20 17v3h-3M9 12h6"/></svg>
+              </div>
+              <div>
+                <div class="action-title">Scan Barcode</div>
+                <div class="action-desc">Torch, ratings & modal</div>
+              </div>
+            </button>
+
+            <button class="action-card-btn" data-route="screen-scan-ingredients">
+              <div class="action-icon lavender">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+              </div>
+              <div>
+                <div class="action-title">Scan Ingredients</div>
+                <div class="action-desc">Chemical simplifier & OCR</div>
+              </div>
+            </button>
+
+            <button class="action-card-btn" data-route="screen-image-analysis">
+              <div class="action-icon cyan">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>
+              </div>
+              <div>
+                <div class="action-title">Food Image AI</div>
+                <div class="action-desc">AI plate vision & macros</div>
+              </div>
+            </button>
+
+            <button class="action-card-btn" data-route="screen-mealprep">
+              <div class="action-icon green">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8h1a4 4 0 0 1 0 8h-1M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"/><line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/></svg>
+              </div>
+              <div>
+                <div class="action-title">Meal Prep</div>
+                <div class="action-desc">Pantry to custom recipe</div>
+              </div>
+            </button>
+          </div>
+        </section>
+
+        <!-- ===================================================================
+             FEATURE: features/barcode/
+             SCREEN 5: SCAN BARCODE SCREEN
+             =================================================================== -->
+        <section class="screen" id="screen-scan-barcode">
+          <div class="screen-header">
+            <button class="back-btn" data-route-back="screen-dashboard">
+              <svg viewBox="0 0 24 24"><path d="M18 6L6 18M6 6l12 12"/></svg> Cancel
+            </button>
+            <span class="screen-title">Barcode Scanner</span>
+            <button class="header-action-btn" data-route="screen-scan-ingredients" title="Scan Ingredients Instead">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/></svg>
+            </button>
+          </div>
+
+          <div class="viewfinder-box">
+            <div class="camera-grid-bg" id="camera-placeholder-bg"></div>
+            <div id="barcode-camera-view" style="position:absolute; inset:0; width:100%; height:100%; overflow:hidden; opacity:0; transition:opacity 0.25s ease;"></div>
+            <canvas id="barcode-camera-canvas" style="display:none;"></canvas>
+
+            <div class="torch-light-beam" id="torch-beam"></div>
+
+            <div class="barcode-target-hud" id="barcode-scan-hud" style="width:85%; max-width:280px; height:110px;">
+              <div class="hud-corner hud-tl"></div>
+              <div class="hud-corner hud-tr"></div>
+              <div class="hud-corner hud-bl"></div>
+              <div class="hud-corner hud-br"></div>
+              <div class="laser-scan-line"></div>
+            </div>
+
+            <div id="barcode-focus-ring" style="display:none; position:absolute; width:44px; height:44px; border:2px solid var(--accent-lavender); border-radius:50%; pointer-events:none; z-index:15; transform:translate(-50%, -50%); transition:transform 0.15s ease, opacity 0.3s ease;"></div>
+
+            <div id="barcode-loading-indicator" style="display:none; position:absolute; inset:0; z-index:20; align-items:center; justify-content:center; flex-direction:column; gap:10px; background:rgba(0,0,0,0.6);">
+              <span class="spinner"></span>
+              <span style="font-size:12px; color:#FFFFFF;">Looking up product&hellip;</span>
+            </div>
+          </div>
+
+          <!-- Scanner Guidance & Fallback Hint -->
+          <div id="barcode-hint-bar" style="display:flex; justify-content:space-between; align-items:center; font-size:12px; color:var(--text-secondary); margin:10px 4px 14px; padding:0 4px;">
+            <span>💡 Hold 10–15 cm away, avoid glare</span>
+            <button type="button" id="barcode-manual-hint-btn" style="background:none; border:none; color:var(--accent-lavender); text-decoration:underline; font-size:12px; cursor:pointer; padding:0;">Can't scan? Enter manually</button>
+          </div>
+
+          <div id="barcode-error-banner" style="display:none; background:rgba(255,45,85,0.12); border:1px solid rgba(255,45,85,0.35); color:var(--ring-red); border-radius:var(--radius-md); padding:12px 14px; font-size:13px; margin-bottom:14px;"></div>
+
+          <div id="barcode-not-found-banner" style="display:none; background:rgba(255,149,0,0.12); border:1px solid rgba(255,149,0,0.35); border-radius:var(--radius-md); padding:14px; font-size:13px; color:var(--text-primary); margin-bottom:14px;">
+            Product not found. You can try scanning the nutrition/ingredient label instead.
+            <button class="btn-secondary" id="barcode-try-ingredients-btn" style="margin-top:10px; width:100%;">Scan Ingredient Label Instead</button>
+            <button class="btn-secondary" id="barcode-not-found-scan-again-btn" style="margin-top:8px; width:100%;">Scan Another Barcode</button>
+          </div>
+
+          <div class="scanner-controls-bar">
+            <button class="scanner-ctrl-btn" id="torch-toggle-btn">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+              <span class="btn-label">Torch Off</span>
+            </button>
+
+            <button class="scanner-ctrl-btn" id="manual-barcode-btn">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="4" y1="9" x2="20" y2="9"/><line x1="4" y1="15" x2="20" y2="15"/><line x1="10" y1="3" x2="8" y2="21"/><line x1="16" y1="3" x2="14" y2="21"/></svg>
+              Manual Barcode
+            </button>
+
+            <button class="scanner-ctrl-btn" id="gallery-barcode-btn">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+              Gallery
+            </button>
+            <input type="file" id="gallery-barcode-file-input" accept="image/*" style="display:none;">
+          </div>
+
+          <div class="card" id="barcode-result-card" style="display:none;">
+            <div style="display:flex; gap:14px; align-items:flex-start; margin-bottom:12px;">
+              <img id="barcode-product-image" style="display:none; width:64px; height:64px; object-fit:cover; border-radius:12px; background:var(--bg-surface);" alt="Product">
+              <div style="flex:1;">
+                <span class="health-score-pill grade-d" id="barcode-health-score" style="margin-bottom:6px;"></span>
+                <div style="font-size:18px; font-weight:800; color:var(--text-primary);" id="barcode-product-name"></div>
+                <div style="font-size:12px; color:var(--text-secondary);" id="barcode-product-brand"></div>
+              </div>
+            </div>
+
+            <div style="margin-top:14px;">
+              <div style="font-size:13px; font-weight:700; color:var(--text-secondary); text-transform:uppercase; margin-bottom:8px;">Nutrition (per 100g)</div>
+              <div id="barcode-nutrition-list"></div>
+            </div>
+
+            <div style="background:rgba(48,209,88,0.1); border-radius:12px; padding:12px; margin-top:14px; font-size:13px; color:var(--text-secondary);">
+              <div style="color:var(--ring-green); font-weight:700; margin-bottom:4px;">Positive Factors</div>
+              <div id="barcode-positives-list"></div>
+            </div>
+
+            <div style="background:rgba(255,45,85,0.1); border-radius:12px; padding:12px; margin-top:10px; font-size:13px; color:var(--text-secondary);">
+              <div style="color:var(--ring-red); font-weight:700; margin-bottom:4px;">Main Concerns</div>
+              <div id="barcode-concerns-list"></div>
+            </div>
+
+            <div style="margin-top:14px; display:none;">
+              <div style="font-size:13px; font-weight:700; color:var(--text-secondary); text-transform:uppercase; margin-bottom:8px;">Ingredients</div>
+              <div style="font-size:12px; color:var(--text-secondary); line-height:1.5;" id="barcode-ingredients-text"></div>
+            </div>
+
+            <button class="btn-primary" id="barcode-find-alternatives-btn" style="margin-top:16px;">
+              Find Cleaner Alternatives
+            </button>
+            <button class="btn-secondary" id="barcode-scan-again-btn" style="margin-top:10px; width:100%;">
+              Scan Another Barcode
+            </button>
+          </div>
+
+          <div id="manual-barcode-modal" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.85); z-index:9999; align-items:center; justify-content:center; padding:20px;">
+            <div class="card" style="width:100%; max-width:340px; margin:0; background:var(--bg-surface-elevated);">
+              <div class="card-title-row">
+                <span class="card-title">Enter Barcode</span>
+                <button id="close-manual-modal-btn" class="header-action-btn">&times;</button>
+              </div>
+              <p style="font-size:13px; color:var(--text-secondary); margin-bottom:14px;">
+                Type the 8 to 14-digit UPC/EAN barcode number on the product package.
+              </p>
+              <input type="text" id="manual-barcode-input" class="form-input" inputmode="numeric" placeholder="e.g. 8901030382918" style="margin-bottom:16px;">
+              <button class="btn-primary" id="submit-manual-barcode-btn">Analyze Barcode</button>
+            </div>
+          </div>
+        </section>
+
+        <!-- ===================================================================
+             FEATURE: features/ingredients/
+             SCREEN 6: SCAN INGREDIENTS SCREEN
+             =================================================================== -->
+        <section class="screen" id="screen-scan-ingredients">
+          <div class="screen-header">
+            <button class="back-btn" data-route-back="screen-dashboard">
+              <svg viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6"/></svg> Back
+            </button>
+            <span class="screen-title">Ingredients Scanner</span>
+            <div style="width:40px;"></div>
+          </div>
+
+          <div class="large-title" style="margin-top:6px;">Ingredient Label Scanner</div>
+          <p style="font-size:13px; color:var(--text-secondary); margin-bottom:18px;">
+            Photograph the printed ingredient list. It's read on-device with OCR, matched against a food-additive knowledge base, and scored.
+          </p>
+
+          <div id="ing-error-banner" style="display:none; background:rgba(255,45,85,0.12); border:1px solid rgba(255,45,85,0.35); color:var(--ring-red); border-radius:var(--radius-md); padding:12px 14px; font-size:13px; margin-bottom:14px;"></div>
+
+          <div id="ing-stage-start" class="ing-stage">
+            <div class="card" style="text-align:center; padding:24px 18px;">
+              <div style="width:56px; height:56px; border-radius:18px; background:rgba(167,139,250,0.18); display:flex; align-items:center; justify-content:center; margin:0 auto 12px; color:var(--accent-lavender);">
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="7" y1="8" x2="17" y2="8"/><line x1="7" y1="12" x2="17" y2="12"/><line x1="7" y1="16" x2="13" y2="16"/></svg>
+              </div>
+              <div style="font-size:16px; font-weight:700; color:var(--text-primary); margin-bottom:4px;">Photograph the Ingredient List</div>
+              <div style="font-size:12px; color:var(--text-secondary); margin-bottom:18px;">Fill the frame with the printed ingredients text, in good light.</div>
+              <button class="btn-primary" id="ing-open-camera-btn">Open Camera</button>
+              <button class="btn-secondary" id="ing-open-gallery-btn" style="margin-top:10px;">Choose Photo from Gallery</button>
+              <input type="file" id="ing-gallery-file-input" accept="image/*" capture="environment" style="display:none;">
+            </div>
+            <button class="card-link" id="ing-manual-entry-link" style="display:block; text-align:center; width:100%; background:none; border:none; padding:6px;">
+              Enter ingredients manually instead
+            </button>
+          </div>
+
+          <div id="ing-stage-camera" class="ing-stage" style="display:none;">
+            <div class="viewfinder-box">
+              <div class="camera-grid-bg"></div>
+              <video id="ing-camera-view" style="display:none; position:absolute; inset:0; width:100%; height:100%; object-fit:cover;" muted playsinline autoplay></video>
+              <div class="barcode-target-hud" style="width:88%; height:70%;" id="ing-camera-hud">
+                <div class="hud-corner hud-tl"></div>
+                <div class="hud-corner hud-tr"></div>
+                <div class="hud-corner hud-bl"></div>
+                <div class="hud-corner hud-br"></div>
+              </div>
+            </div>
+            <p style="font-size:12px; color:var(--text-secondary); text-align:center; margin-bottom:14px;">Hold steady, keep text inside the frame, then capture.</p>
+            <button class="btn-primary" id="ing-capture-btn">Capture Photo</button>
+            <button class="btn-secondary" id="ing-cancel-camera-btn" style="margin-top:10px;">Cancel</button>
+          </div>
+
+          <canvas id="ing-capture-canvas" style="display:none;"></canvas>
+
+          <div id="ing-stage-preview" class="ing-stage" style="display:none;">
+            <div class="card" style="padding:10px;">
+              <img id="ing-preview-image" style="width:100%; border-radius:var(--radius-md); display:block;" alt="Captured ingredient label">
+            </div>
+            <button class="btn-primary" id="ing-use-photo-btn">Use This Photo</button>
+            <button class="btn-secondary" id="ing-retake-btn" style="margin-top:10px;">Retake Photo</button>
+          </div>
+
+          <div id="ing-stage-progress" class="ing-stage" style="display:none;">
+            <div class="card" style="text-align:center; padding:32px 18px;">
+              <span class="spinner" style="width:28px; height:28px; border-width:3px; margin-bottom:14px;"></span>
+              <div style="font-size:14px; color:var(--text-primary); font-weight:600;" id="ing-progress-label">Reading ingredient text&hellip;</div>
+              <div style="font-size:12px; color:var(--text-secondary); margin-top:4px;" id="ing-progress-pct">0%</div>
+            </div>
+          </div>
+
+          <div id="ing-stage-review" class="ing-stage" style="display:none;">
+            <div class="card">
+              <div class="card-title-row">
+                <span class="card-title" style="font-size:15px;">Extracted Ingredients</span>
+              </div>
+              <div style="font-size:12px; color:var(--text-secondary); margin-bottom:10px;">Check the text below — fix anything the OCR misread before analyzing.</div>
+              <textarea id="ing-review-textarea" class="form-textarea" rows="5" placeholder="Extracted ingredient text will appear here&hellip;"></textarea>
+            </div>
+            <button class="btn-primary" id="ing-analyze-btn">Analyze Ingredients</button>
+            <button class="btn-secondary" id="ing-retake-from-review-btn" style="margin-top:10px;">Retake Photo</button>
+          </div>
+
+          <div id="ing-stage-manual" class="ing-stage" style="display:none;">
+            <div class="card">
+              <div class="card-title-row">
+                <span class="card-title" style="font-size:15px;">Enter Ingredients Manually</span>
+              </div>
+              <div style="font-size:12px; color:var(--text-secondary); margin-bottom:10px;">Paste or type the ingredient list exactly as printed on the package.</div>
+              <textarea id="ing-manual-textarea" class="form-textarea" rows="5" placeholder="e.g. Potatoes, edible vegetable oil (palmolein), salt, spices and condiments, flavour enhancer (INS 621)"></textarea>
+            </div>
+            <button class="btn-primary" id="ing-analyze-manual-btn">Analyze Ingredients</button>
+            <button class="btn-secondary" id="ing-back-from-manual-btn" style="margin-top:10px;">Use Camera Instead</button>
+          </div>
+
+          <div id="ing-stage-results" class="ing-stage" style="display:none;">
+            <div class="card" id="ing-score-card" style="border-left:4px solid var(--ring-red);">
+              <div style="display:flex; justify-content:space-between; align-items:center;">
+                <div>
+                  <div style="font-size:12px; color:var(--text-secondary); font-weight:700; text-transform:uppercase;">Health Score</div>
+                  <div style="font-family:var(--font-mono); font-size:28px; font-weight:800;" id="ing-score-value">-- / 100</div>
+                </div>
+                <span class="health-score-pill grade-d" id="ing-score-category">--</span>
+              </div>
+            </div>
+
+            <div class="card" id="ing-allergen-card" style="display:none; border-left:4px solid var(--accent-amber);">
+              <div style="color:var(--accent-amber); font-weight:700; font-size:13px; margin-bottom:6px;">⚠ Allergens Detected</div>
+              <div id="ing-allergen-list" style="font-size:13px; color:var(--text-secondary);"></div>
+            </div>
+
+            <div class="card" style="background:rgba(48,209,88,0.08); border-color:rgba(48,209,88,0.25);">
+              <div style="color:var(--ring-green); font-weight:700; margin-bottom:6px; font-size:13px;">Positive</div>
+              <div id="ing-positives-list" style="font-size:13px; color:var(--text-secondary); line-height:1.7;"></div>
+            </div>
+
+            <div class="card" style="background:rgba(255,45,85,0.08); border-color:rgba(255,45,85,0.25);">
+              <div style="color:var(--ring-red); font-weight:700; margin-bottom:6px; font-size:13px;">Concerns</div>
+              <div id="ing-concerns-list" style="font-size:13px; color:var(--text-secondary); line-height:1.7;"></div>
+            </div>
+
+            <div class="card" id="ing-unknown-card" style="display:none; background:rgba(255,149,0,0.08); border-color:rgba(255,149,0,0.25);">
+              <div style="color:var(--accent-amber); font-weight:700; margin-bottom:6px; font-size:13px;">Unknown</div>
+              <div id="ing-unknown-note" style="font-size:13px; color:var(--text-secondary);"></div>
+            </div>
+
+            <div class="card-title-row">
+              <span class="card-title" style="font-size:15px;">Ingredients Found</span>
+              <span class="card-subtitle" id="ing-count-subtitle"></span>
+            </div>
+            <div id="ing-ingredient-chip-list" class="ing-chip-list"></div>
+
+            <details class="card" id="ing-raw-text-details" style="margin-top:16px;">
+              <summary style="cursor:pointer; font-size:13px; font-weight:700; color:var(--text-secondary);">Original scanned text</summary>
+              <div id="ing-raw-text-content" style="font-size:12px; color:var(--text-secondary); line-height:1.5; margin-top:10px; white-space:pre-wrap;"></div>
+            </details>
+
+            <div class="card" style="margin-top:16px;">
+              <div class="card-title-row" style="margin-bottom:6px;">
+                <span class="card-title" style="font-size:15px;">Name this product</span>
+              </div>
+              <div style="font-size:12px; color:var(--text-secondary); margin-bottom:12px;">Optional. Helps Lavosia pick the right kind of swap.</div>
+              <div class="form-group" style="margin-bottom:12px;">
+                <label class="form-label" for="ing-product-name-input">Product name</label>
+                <input type="text" id="ing-product-name-input" class="form-input" placeholder="e.g. Masala Potato Chips" autocomplete="off">
+              </div>
+              <div class="form-group" style="margin-bottom:0;">
+                <label class="form-label" for="ing-product-brand-input">Brand</label>
+                <input type="text" id="ing-product-brand-input" class="form-input" placeholder="e.g. Crunchy Co." autocomplete="off">
+              </div>
+            </div>
+
+            <button class="btn-primary" id="ing-find-alternatives-btn">Find Cleaner Alternatives</button>
+            <button class="btn-secondary" id="ing-edit-text-btn" style="margin-top:10px;">Edit Ingredient Text</button>
+            <button class="btn-secondary" id="ing-scan-again-btn" style="margin-top:10px;">Scan Again</button>
+          </div>
+        </section>
+
+        <!-- ===================================================================
+             FEATURE: features/food-vision/
+             SCREEN 7: IMAGE ANALYSIS SCREEN (Food Computer Vision)
+             =================================================================== -->
+        <section class="screen" id="screen-image-analysis">
+          <div class="screen-header">
+            <button class="back-btn" data-route-back="screen-dashboard">
+              <svg viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6"/></svg> Back
+            </button>
+            <span class="screen-title">Food Vision Analysis</span>
+            <div style="width:40px;"></div>
+          </div>
+
+          <div class="large-title" style="margin-top:6px;">Meal Image Scanner</div>
+          <p style="font-size:13px; color:var(--text-secondary); margin-bottom:16px;">
+            Photograph or upload a plate. Gemini identifies every food item, estimates portions and retrieves accurate macronutrients.
+          </p>
+
+          <!-- Error / Alert Banner -->
+          <div id="image-analysis-error-banner" class="api-error-banner" style="display:none;">
+            <div id="image-analysis-error-text"></div>
+            <button type="button" class="btn-secondary" id="image-analysis-retry-btn">Try Again</button>
+          </div>
+
+          <!-- Preview & Viewfinder Box -->
+          <div class="viewfinder-box" style="height:230px; position:relative; background:#18181B;">
+            <img id="image-analysis-preview" src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=600&auto=format&fit=crop" alt="Food plate preview" style="width:100%; height:100%; object-fit:cover;">
+            <div class="hud-corner hud-tl"></div>
+            <div class="hud-corner hud-tr"></div>
+            <div class="hud-corner hud-bl"></div>
+            <div class="hud-corner hud-br"></div>
+
+            <!-- Loading Overlay -->
+            <div id="image-analysis-loading-overlay" style="display:none; position:absolute; inset:0; background:rgba(0,0,0,0.7); z-index:30; align-items:center; justify-content:center; flex-direction:column; gap:10px;">
+              <span class="spinner" style="width:32px; height:32px; border-width:3px;"></span>
+              <span style="font-size:13px; font-weight:600; color:#FFFFFF;" id="image-analysis-loading-status">Analyzing meal with Gemini...</span>
+            </div>
+          </div>
+
+          <!-- Controls: Camera, Upload, Note & Meal Type -->
+          <div class="card" style="padding:14px; margin-bottom:16px;">
+            <div style="display:flex; gap:10px; margin-bottom:12px;">
+              <button type="button" class="btn-secondary" id="image-analysis-camera-btn" style="flex:1;">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>
+                Take Photo
+              </button>
+              <button type="button" class="btn-secondary" id="image-analysis-gallery-btn" style="flex:1;">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+                Upload File
+              </button>
+              <input type="file" id="image-analysis-file-input" accept="image/*" capture="environment" style="display:none;">
+            </div>
+
+            <div style="display:grid; grid-template-columns: 1fr 1fr; gap:10px;">
+              <div class="form-group" style="margin-bottom:0;">
+                <label class="form-label" for="image-analysis-meal-type">Meal Type</label>
+                <select id="image-analysis-meal-type" class="form-select" style="height:42px; font-size:13px;">
+                  <option value="Lunch">Lunch</option>
+                  <option value="Dinner">Dinner</option>
+                  <option value="Breakfast">Breakfast</option>
+                  <option value="Snack">Snack</option>
+                </select>
+              </div>
+              <div class="form-group" style="margin-bottom:0;">
+                <label class="form-label" for="image-analysis-user-note">Dish Name / Note</label>
+                <input type="text" id="image-analysis-user-note" class="form-input" placeholder="e.g. Dal Makhani with Roti" style="height:42px; font-size:13px;">
+              </div>
+            </div>
+          </div>
+
+          <button class="btn-primary" id="confirm-analyze-btn" style="margin-bottom:18px;">
+            Confirm & Analyze Meal
+          </button>
+
+          <!-- Computer Vision Results Card -->
+          <div class="card" id="image-analysis-results" style="display:none;">
+            <div class="card-title-row" style="margin-bottom:8px;">
+              <div>
+                <span class="health-score-pill grade-a" id="analysis-ai-badge" style="margin-bottom:6px;">Gemini Verified</span>
+                <div style="font-size:20px; font-weight:800; color:var(--text-primary);" id="analysis-food-title">Analyzed Meal Plate</div>
+              </div>
+            </div>
+
+            <div id="image-quality-note-text" style="font-size:12px; color:var(--text-secondary); margin-bottom:14px; font-style:italic;"></div>
+
+            <!-- Identified Nutrients Totals Grid -->
+            <div style="display:grid; grid-template-columns: repeat(4, 1fr); gap:8px; margin:14px 0; text-align:center;">
+              <div style="background:var(--bg-surface-elevated); padding:10px 4px; border-radius:12px;">
+                <div style="font-size:10px; color:var(--text-secondary); font-weight:700;">CALORIES</div>
+                <div style="font-family:var(--font-mono); font-size:16px; font-weight:800; color:var(--ring-red);" id="analysis-cal-val">0 kcal</div>
+              </div>
+              <div style="background:var(--bg-surface-elevated); padding:10px 4px; border-radius:12px;">
+                <div style="font-size:10px; color:var(--text-secondary); font-weight:700;">PROTEIN</div>
+                <div style="font-family:var(--font-mono); font-size:16px; font-weight:800; color:var(--accent-lavender);" id="analysis-pro-val">0g</div>
+              </div>
+              <div style="background:var(--bg-surface-elevated); padding:10px 4px; border-radius:12px;">
+                <div style="font-size:10px; color:var(--text-secondary); font-weight:700;">CARBS</div>
+                <div style="font-family:var(--font-mono); font-size:16px; font-weight:800; color:#FFA114;" id="analysis-carbs-val">0g</div>
+              </div>
+              <div style="background:var(--bg-surface-elevated); padding:10px 4px; border-radius:12px;">
+                <div style="font-size:10px; color:var(--text-secondary); font-weight:700;">FATS</div>
+                <div style="font-family:var(--font-mono); font-size:16px; font-weight:800; color:var(--ring-cyan);" id="analysis-fat-val">0g</div>
+              </div>
+            </div>
+
+            <!-- Per-Item Breakdown Header & Editable Items Container -->
+            <div style="margin-top:16px;">
+              <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+                <span style="font-size:13px; font-weight:700; text-transform:uppercase; color:var(--text-secondary);">Identified Food Items (Editable)</span>
+                <span style="font-size:11px; color:var(--text-muted);">Edit grams to recalculate</span>
+              </div>
+              <div id="image-analysis-items-container" class="analysis-items-container">
+                <!-- Dynamically populated per item -->
+              </div>
+            </div>
+
+            <button class="btn-primary" id="log-analyzed-meal-btn" style="margin-top:16px;">
+              Add Meal to Daily Dashboard Log
+            </button>
+          </div>
+        </section>
+
+        <!-- ===================================================================
+             FEATURE: features/swaps/
+             SCREEN 8: RECOMMENDATIONS SCREEN (Smart Swaps Engine)
+             =================================================================== -->
+        <section class="screen" id="screen-recommendations">
+          <div class="screen-header">
+            <button class="back-btn" data-route-back="screen-dashboard">
+              <svg viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6"/></svg> Back
+            </button>
+            <span class="screen-title">Smart Health Swaps</span>
+            <div style="width:40px;"></div>
+          </div>
+
+          <div class="large-title" style="margin-top:6px;">Cleaner Alternatives</div>
+          <p style="font-size:13px; color:var(--text-secondary); margin-bottom:18px;">
+            Scan a product, or type its barcode or ingredients. Lavosia flags additives, preservatives and high sugar or salt, then suggests cleaner swaps.
+          </p>
+
+          <div id="swap-status-banner" class="swap-banner" role="status" style="display:none;"></div>
+
+          <div class="card" id="swap-product-card">
+            <div class="card-title-row">
+              <span class="card-title">Product to check</span>
+              <button type="button" class="card-link swap-link-btn" id="swap-clear-btn">Clear</button>
+            </div>
+
+            <div class="swap-source" id="swap-source-note" style="display:none;">
+              <img id="swap-product-image" class="swap-source-img" alt="" style="display:none;">
+              <span id="swap-source-text"></span>
+            </div>
+
+            <div class="swap-entry-actions">
+              <button type="button" class="btn-secondary" id="scan-swap-barcode-btn">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="4" y1="9" x2="20" y2="9"/><line x1="4" y1="15" x2="20" y2="15"/><line x1="10" y1="3" x2="8" y2="21"/><line x1="16" y1="3" x2="14" y2="21"/></svg>
+                Type Barcode
+              </button>
+              <button type="button" class="btn-secondary" data-route="screen-scan-barcode">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>
+                Use Camera
+              </button>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="swap-product-input">Product name</label>
+              <input type="text" id="swap-product-input" class="form-input" placeholder="e.g. Cheddar Potato Chips" autocomplete="off">
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="swap-brand-input">Brand</label>
+              <input type="text" id="swap-brand-input" class="form-input" placeholder="Optional" autocomplete="off">
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="swap-ingredients-input">Ingredients</label>
+              <textarea id="swap-ingredients-input" class="form-textarea" rows="4" placeholder="Optional"></textarea>
+            </div>
+
+            <button class="btn-primary" id="analyze-swap-btn">Find Cleaner Alternatives</button>
+          </div>
+
+          <div style="margin: 16px 0 6px;">
+            <div style="font-size:12px; font-weight:700; text-transform:uppercase; color:var(--text-secondary); margin-bottom:8px; letter-spacing:0.04em;">Explore Clean Swaps by Category</div>
+            <div class="swap-category-chips" id="swap-category-chips">
+              <button type="button" class="swap-cat-chip active" data-category="all">All</button>
+              <button type="button" class="swap-cat-chip" data-category="chips">Chips & Savory</button>
+              <button type="button" class="swap-cat-chip" data-category="cookies">Cookies</button>
+              <button type="button" class="swap-cat-chip" data-category="soda">Sodas & Drinks</button>
+              <button type="button" class="swap-cat-chip" data-category="energy_drink">Energy Drinks</button>
+              <button type="button" class="swap-cat-chip" data-category="bars">Protein & Granola</button>
+              <button type="button" class="swap-cat-chip" data-category="cereal">Cereals</button>
+              <button type="button" class="swap-cat-chip" data-category="bread">Breads</button>
+              <button type="button" class="swap-cat-chip" data-category="noodles">Instant Noodles</button>
+              <button type="button" class="swap-cat-chip" data-category="dressing">Dressings</button>
+              <button type="button" class="swap-cat-chip" data-category="dip">Dips & Hummus</button>
+              <button type="button" class="swap-cat-chip" data-category="plantmilk">Plant Milks</button>
+              <button type="button" class="swap-cat-chip" data-category="yogurt">Yogurts</button>
+            </div>
+          </div>
+
+          <div class="card" id="swap-empty-state" style="text-align:center; color:var(--text-secondary); font-size:13px; padding:28px 16px;">
+            Add a product above or pick a category to explore clean swaps.
+          </div>
+
+          <div id="swap-results" style="display:none;"></div>
+
+          <div id="swap-barcode-modal" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.85); z-index:9999; align-items:center; justify-content:center; padding:20px;">
+            <div class="card" style="width:100%; max-width:340px; margin:0; background:var(--bg-surface-elevated);">
+              <div class="card-title-row">
+                <span class="card-title">Enter Barcode</span>
+                <button id="close-swap-barcode-modal-btn" class="header-action-btn" aria-label="Close">&times;</button>
+              </div>
+              <p style="font-size:13px; color:var(--text-secondary); margin-bottom:14px;">
+                Type the 8 to 14-digit number printed under the barcode. Lavosia looks up the product and its ingredients.
+              </p>
+              <input type="text" id="swap-barcode-input" class="form-input" inputmode="numeric" placeholder="e.g. 8901030382918" style="margin-bottom:16px;">
+              <button class="btn-primary" id="submit-swap-barcode-btn">Look Up Product</button>
+            </div>
+          </div>
+        </section>
+
+        <!-- ===================================================================
+             FEATURE: features/meal-prep/
+             SCREEN 9: MEALPREP SCREEN (Pantry to Recipe & Allergen Selector)
+             =================================================================== -->
+        <section class="screen" id="screen-mealprep">
+          <div class="date-header">AI CULINARY TELEMETRY</div>
+          <div class="large-title">
+            <span>Meal Prep</span>
+            <button class="header-action-btn" id="open-allergen-btn" title="Allergen Preferences">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            </button>
+          </div>
+
+          <p style="font-size:13px; color:var(--text-secondary); margin-bottom:18px;">
+            Enter the ingredients you have. AI synthesizes personalized recipes using ONLY your pantry items while strictly filtering allergens.
+          </p>
+
+          <!-- Allergen and Target Status Strip -->
+          <div class="card" style="padding:12px 14px; margin-bottom:16px; background:var(--bg-surface-elevated);">
+            <div style="display:flex; justify-content:space-between; align-items:center; font-size:12px;">
+              <div>
+                <span style="color:var(--text-secondary);">Diet: </span>
+                <strong id="mealprep-user-diet" style="color:var(--text-primary);">Non-Veg</strong>
+                <span style="margin: 0 6px; color:var(--border-medium);">|</span>
+              </div>
+              <button type="button" id="edit-allergen-link" class="card-link" style="font-size:12px;">Allergens (<span id="mealprep-allergen-count">2</span>)</button>
+            </div>
+          </div>
+
+          <!-- Error Banner -->
+          <div id="mealprep-error-banner" class="api-error-banner" style="display:none;">
+            <div id="mealprep-error-text"></div>
+            <button type="button" class="btn-secondary" id="mealprep-retry-btn">Retry Generation</button>
+          </div>
+
+          <!-- Pantry Ingredient Tags Builder -->
+          <div class="card">
+            <div class="form-label">Available Pantry Ingredients</div>
+            <div style="display:flex; gap:8px; margin-bottom:12px;">
+              <input type="text" id="pantry-item-input" class="form-input" placeholder="e.g. Chicken breast, Rice, Broccoli">
+              <button class="btn-primary" id="add-pantry-item-btn" style="width:50px; height:48px; border-radius:12px; font-size:20px;">+</button>
+            </div>
+
+            <!-- Empty-state hint -->
+            <div id="pantry-empty-hint" style="font-size:12px; color:var(--text-muted); margin-bottom:12px;">No ingredients added yet. Type one above and tap +.</div>
+
+            <!-- Active Pantry Tags -->
+            <div id="pantry-tags-container" style="display:flex; flex-wrap:wrap; gap:8px;"></div>
+
+            <!-- Quick Suggestions -->
+            <div style="margin-top:14px; padding-top:12px; border-top:1px solid var(--border-subtle);">
+              <div style="font-size:11px; font-weight:700; color:var(--text-secondary); text-transform:uppercase; margin-bottom:8px;">Quick Add Staples</div>
+              <div style="display:flex; flex-wrap:wrap; gap:6px;" id="pantry-quick-suggestions">
+                <button type="button" class="prompt-chip" data-staple="Basmati Rice">+ Rice</button>
+                <button type="button" class="prompt-chip" data-staple="Chicken Breast">+ Chicken</button>
+                <button type="button" class="prompt-chip" data-staple="Eggs">+ Eggs</button>
+                <button type="button" class="prompt-chip" data-staple="Tofu">+ Tofu</button>
+                <button type="button" class="prompt-chip" data-staple="Spinach">+ Spinach</button>
+                <button type="button" class="prompt-chip" data-staple="Olive Oil">+ Olive Oil</button>
+              </div>
+            </div>
+
+            <!-- Cooking Constraints -->
+            <div style="display:grid; grid-template-columns: 1fr 1fr; gap:10px; margin-top:14px;">
+              <div class="form-group" style="margin-bottom:0;">
+                <label class="form-label" for="mealprep-max-time">Max Cooking Time</label>
+                <select id="mealprep-max-time" class="form-select" style="height:42px; font-size:13px;">
+                  <option value="20">20 minutes</option>
+                  <option value="30" selected>30 minutes</option>
+                  <option value="45">45 minutes</option>
+                  <option value="60">60 minutes</option>
+                </select>
+              </div>
+              <div class="form-group" style="margin-bottom:0;">
+                <label class="form-label" for="mealprep-servings">Servings</label>
+                <select id="mealprep-servings" class="form-select" style="height:42px; font-size:13px;">
+                  <option value="1" selected>1 Serving</option>
+                  <option value="2">2 Servings</option>
+                  <option value="4">4 Servings (Family)</option>
+                </select>
+              </div>
+            </div>
+
+            <!-- Submit Button -->
+            <button class="btn-primary" id="generate-mealplan-btn" style="margin-top:16px;">
+              Generate Meal Plan
+            </button>
+          </div>
+
+          <!-- Generated Meal Prep Output Container -->
+          <div class="card" id="mealprep-recipe-output" style="display:none;"></div>
+
+          <!-- Allergen Safety Modal -->
+          <div id="allergen-modal" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.85); z-index:9999; align-items:center; justify-content:center; padding:20px;">
+            <div class="card" style="width:100%; max-width:340px; margin:0; background:var(--bg-surface-elevated);">
+              <div class="card-title-row">
+                <span class="card-title">Manage Allergens</span>
+                <button id="close-allergen-btn" class="header-action-btn">&times;</button>
+              </div>
+              <p style="font-size:12px; color:var(--text-secondary); margin-bottom:14px;">Select allergens to filter out during MealPrep synthesis:</p>
+              <div id="allergen-checkbox-list" style="display:flex; flex-direction:column; gap:10px; margin-bottom:16px;">
+                <label style="display:flex; align-items:center; gap:8px; font-size:13px; color:var(--text-primary);"><input type="checkbox" value="Milk" checked style="accent-color:var(--accent-lavender);"> Milk / Dairy (includes ghee, butter)</label>
+                <label style="display:flex; align-items:center; gap:8px; font-size:13px; color:var(--text-primary);"><input type="checkbox" value="Eggs" style="accent-color:var(--accent-lavender);"> Eggs</label>
+                <label style="display:flex; align-items:center; gap:8px; font-size:13px; color:var(--text-primary);"><input type="checkbox" value="Peanuts" checked style="accent-color:var(--accent-lavender);"> Peanuts (includes peanut oil)</label>
+                <label style="display:flex; align-items:center; gap:8px; font-size:13px; color:var(--text-primary);"><input type="checkbox" value="Tree Nuts" style="accent-color:var(--accent-lavender);"> Tree Nuts (almonds, cashews, walnuts)</label>
+                <label style="display:flex; align-items:center; gap:8px; font-size:13px; color:var(--text-primary);"><input type="checkbox" value="Wheat" style="accent-color:var(--accent-lavender);"> Wheat / Gluten (maida, flour, atta)</label>
+                <label style="display:flex; align-items:center; gap:8px; font-size:13px; color:var(--text-primary);"><input type="checkbox" value="Soybeans" style="accent-color:var(--accent-lavender);"> Soybeans (tofu, edamame, soy sauce)</label>
+                <label style="display:flex; align-items:center; gap:8px; font-size:13px; color:var(--text-primary);"><input type="checkbox" value="Fish" style="accent-color:var(--accent-lavender);"> Fish</label>
+                <label style="display:flex; align-items:center; gap:8px; font-size:13px; color:var(--text-primary);"><input type="checkbox" value="Crustacean Shellfish" style="accent-color:var(--accent-lavender);"> Crustacean Shellfish</label>
+                <label style="display:flex; align-items:center; gap:8px; font-size:13px; color:var(--text-primary);"><input type="checkbox" value="Sesame" style="accent-color:var(--accent-lavender);"> Sesame (tahini, sesame oil)</label>
+              </div>
+              <button class="btn-primary" id="save-allergen-btn">Save Allergen Filter</button>
+            </div>
+          </div>
+        </section>
+
+        <!-- ===================================================================
+             FEATURE: features/saved-recipes/
+             SCREEN 11: SAVED RECIPES SCREEN
+             =================================================================== -->
+        <section class="screen" id="screen-saved-recipes">
+          <div class="date-header">COLLECTIONS</div>
+          <div class="large-title">Saved Recipes</div>
+
+          <!-- Filter Pills -->
+          <div class="chat-chips-scroll" style="margin-bottom:18px;">
+            <button class="prompt-chip recipe-filter-chip active" data-category="All">All Recipes</button>
+            <button class="prompt-chip recipe-filter-chip" data-category="High Protein">High Protein</button>
+            <button class="prompt-chip recipe-filter-chip" data-category="Quick Prep">Quick Prep</button>
+            <button class="prompt-chip recipe-filter-chip" data-category="Vegan">Vegan</button>
+          </div>
+
+          <!-- Saved Recipe Cards List -->
+          <div id="saved-recipes-list">
+            <!-- Dynamically populated by app.js -->
+          </div>
+        </section>
+
+        <!-- ===================================================================
+             FEATURE: features/settings/
+             SCREEN 12: SETTINGS SCREEN
+             =================================================================== -->
+        <section class="screen" id="screen-settings">
+          <div class="date-header">PREFERENCES</div>
+          <div class="large-title">Settings & Profile</div>
+
+          <div class="card" style="display:flex; align-items:center; gap:16px; margin-bottom:18px;">
+            <div class="profile-avatar-btn" style="width:52px; height:52px; font-size:18px;">AR</div>
+            <div style="flex:1;">
+              <div style="font-size:18px; font-weight:800; color:var(--text-primary);" id="settings-user-name">Alex Rivera</div>
+              <div style="font-size:12px; color:var(--text-secondary); margin-top:2px;" id="settings-user-meta">MALE &bull; 26 YRS &bull; 78 KG &bull; 182 CM</div>
+            </div>
+          </div>
+
+          <div class="card" style="padding:6px 0; margin-bottom:22px;">
+            <button class="workout-item" id="open-edit-profile-btn" style="width:100%; text-align:left; background:transparent; border:none; padding:14px 18px;">
+              <div class="workout-info">
+                <div class="workout-title">Edit Physical Stats & Activity</div>
+                <div style="font-size:12px; color:var(--text-secondary);">Recalculates metabolic TDEE budget</div>
+              </div>
+              <div class="workout-chevron">&gt;</div>
+            </button>
+
+            
+
+            <button class="workout-item" id="settings-admin-panel-btn" style="display:none; width:100%; text-align:left; background:rgba(124,58,237,0.08); border:none; padding:14px 18px; border-top:1px solid var(--border-subtle);">
+              <div class="workout-info">
+                <div class="workout-title" style="color:var(--accent-lavender); display:flex; align-items:center; gap:6px;">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+                  Admin Console
+                </div>
+                <div style="font-size:12px; color:var(--text-secondary);">User accounts, roles, reset credentials & database stats</div>
+              </div>
+              <div class="workout-chevron" style="color:var(--accent-lavender);">&gt;</div>
+            </button>
+          </div>
+
+          <button class="btn-secondary" id="logout-btn" style="color:var(--ring-red); border-color:rgba(255,45,85,0.3);">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4M16 17l5-5-5-5M21 12H9"/></svg>
+            Log Out from Lavosia
+          </button>
+
+          <!-- Edit Profile & TDEE Modal -->
+          <div id="edit-profile-modal" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.85); z-index:9999; align-items:center; justify-content:center; padding:20px;">
+            <div class="card" style="width:100%; max-width:340px; margin:0; background:var(--bg-surface-elevated);">
+              <div class="card-title-row">
+                <span class="card-title">Edit Physical Stats</span>
+                <button id="close-edit-modal-btn" class="header-action-btn">&times;</button>
+              </div>
+              <form id="edit-profile-form">
+                <div class="form-group">
+                  <label class="form-label" for="edit-weight">Weight (kg)</label>
+                  <input type="number" id="edit-weight" class="form-input" required>
+                </div>
+                <div class="form-group">
+                  <label class="form-label" for="edit-height">Height (cm)</label>
+                  <input type="number" id="edit-height" class="form-input" required>
+                </div>
+                <div class="form-group">
+                  <label class="form-label" for="edit-age">Age (Years)</label>
+                  <input type="number" id="edit-age" class="form-input" required>
+                </div>
+                <div class="form-group">
+                  <label class="form-label" for="edit-activity">Activity Level</label>
+                  <select id="edit-activity" class="form-select">
+                    <option value="sedentary">Sedentary (light/no exercise)</option>
+                    <option value="light">Light (exercise 1–3x/wk)</option>
+                    <option value="moderate">Moderate (exercise 4–5x/wk)</option>
+                    <option value="active">Active (daily or intense 4–5x/wk)</option>
+                    <option value="very_active">Very Active (intense 6–7x/wk)</option>
+                    <option value="extra_active">Extra Active (intense training + job)</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label class="form-label" for="edit-diet">Dietary Preference</label>
+                  <select id="edit-diet" class="form-select">
+                    <option value="Non-Veg">Non-Veg (High Protein Meat & Fish)</option>
+                    <option value="Veg">Vegetarian (Dairy & Plant Proteins)</option>
+                    <option value="Vegan">Vegan (100% Plant-Based)</option>
+                  </select>
+                </div>
+                <button type="submit" class="btn-primary">Recalculate TDEE & Save</button>
+              </form>
+            </div>
+          </div>
+        </section>
+
+        <!-- ===================================================================
+             FEATURE: features/admin/
+             SCREEN 13: ADMIN CONSOLE & USER MANAGEMENT
+             =================================================================== -->
+        <section class="screen" id="screen-admin">
+          <div class="screen-header">
+            <button class="back-btn" data-route-back="screen-settings">
+              <svg viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6"/></svg> Settings
+            </button>
+            <span class="screen-title">Admin Console</span>
+            <button class="header-action-btn" id="admin-refresh-btn" title="Refresh Users">
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/></svg>
+            </button>
+          </div>
+
+          <div class="date-header">SYSTEM ADMINISTRATION</div>
+          <div style="display:flex; justify-content:space-between; align-items:baseline; margin-bottom:8px;">
+            <div class="large-title" style="margin-bottom:0;">User Directory</div>
+            <span id="admin-user-count" style="font-size:14px; font-weight:700; color:var(--accent-lavender); font-family:var(--font-mono);"></span>
+          </div>
+          <p style="font-size:13px; color:var(--text-secondary); margin-bottom:18px;">
+            Manage credentials, account status, security roles, and user data metrics.
+          </p>
+
+          <!-- Status Notice Banner -->
+          <div id="admin-notice-banner" class="banner" style="display:none; margin-bottom:16px; padding:12px 14px; border-radius:var(--radius-md); font-size:13px;">
+          </div>
+
+          <!-- Password Reset Result Modal / Callout -->
+          <div id="admin-temp-pw-callout" class="card" style="display:none; border:1px solid var(--accent-lavender); background:rgba(124,58,237,0.12); margin-bottom:20px;">
+            <div style="font-size:13px; font-weight:700; color:var(--accent-lavender); margin-bottom:6px; display:flex; align-items:center; justify-content:space-between;">
+              <span>Temporary Password Generated</span>
+              <button id="admin-close-pw-callout" style="background:transparent; border:none; color:var(--text-primary); font-size:16px; cursor:pointer;">&times;</button>
+            </div>
+            <p style="font-size:12px; color:var(--text-secondary); margin-bottom:8px;">
+              This temporary password was generated securely and will not be displayed again. Provide it to user <strong id="admin-temp-pw-user" style="color:var(--text-primary);"></strong>:
+            </p>
+            <div style="display:flex; align-items:center; gap:8px;">
+              <input type="text" id="admin-temp-pw-val" readonly class="form-input" style="font-family:var(--font-mono); font-weight:700; background:var(--bg-canvas); color:#00F5D4; text-align:center; letter-spacing:1px;">
+              <button id="admin-copy-pw-btn" class="btn-secondary" style="width:auto; padding:0 14px; height:44px; white-space:nowrap;">Copy</button>
+            </div>
+          </div>
+
+          <!-- Users List Container -->
+          <div id="admin-users-list" style="display:flex; flex-direction:column; gap:14px; margin-bottom:24px;">
+            <div style="text-align:center; padding:30px; color:var(--text-muted); font-size:13px;">Loading users directory...</div>
+          </div>
+        </section>
+
+      </main>
+
+      <!-- Weekly Day Selector (Screen 4 only) -->
+      <div class="week-bar" id="week-bar" role="group" aria-label="Choose a day to review">
+        <button type="button" class="week-nav" id="week-prev" aria-label="Previous week">
+          <svg viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6"/></svg>
+        </button>
+        <div class="week-days" id="week-days"></div>
+        <button type="button" class="week-nav" id="week-next" aria-label="Next week">
+          <svg viewBox="0 0 24 24"><path d="M9 18l6-6-6-6"/></svg>
+        </button>
+      </div>
+
+      <!-- Persistent Bottom Navigation Tab Bar -->
+      <nav class="ios-tab-bar" aria-label="Bottom Navigation">
+        <button class="tab-btn active" id="tab-summary">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/></svg>
+          <span>Summary</span>
+        </button>
+
+        <button class="tab-btn" id="tab-recommendations">
+          <svg viewBox="0 0 24 24"><polyline points="17 1 21 5 17 9"/><path d="M3 11V9a4 4 0 0 1 4-4h14"/><polyline points="7 23 3 19 7 15"/><path d="M21 13v2a4 4 0 0 1-4 4H3"/></svg>
+          <span>Swaps</span>
+        </button>
+
+        <button class="tab-btn" id="tab-recipes">
+          <svg viewBox="0 0 24 24"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg>
+          <span>Saved</span>
+        </button>
+
+        <button class="tab-btn" id="tab-settings">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+          <span>Settings</span>
+        </button>
+      </nav>
+
+      <div class="ios-home-indicator"></div>
+    </div>
+  </div>
+
+  <!-- LocalStorage to Cloud Account Migration Modal -->
+  <div id="migration-modal" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.88); z-index:10000; align-items:center; justify-content:center; padding:20px;">
+    <div class="card" style="width:100%; max-width:340px; margin:0; background:var(--bg-surface-elevated); border:1px solid var(--border-subtle); box-shadow:0 12px 30px rgba(0,0,0,0.5);">
+      <div style="display:flex; align-items:center; gap:10px; margin-bottom:12px;">
+        <div style="width:36px; height:36px; border-radius:50%; background:rgba(124,58,237,0.15); display:flex; align-items:center; justify-content:center; color:var(--accent-lavender);">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+        </div>
+        <div>
+          <div style="font-size:16px; font-weight:800; color:var(--text-primary);">Sync Device Data?</div>
+          <div style="font-size:12px; color:var(--text-secondary);">Existing browser data detected</div>
+        </div>
+      </div>
+      <p style="font-size:13px; color:var(--text-secondary); line-height:1.45; margin-bottom:16px;" id="migration-modal-text">
+        We found saved recipes, daily logs, or profile goals saved on this device. Would you like to migrate this data to your new secure account?
+      </p>
+      <div style="display:flex; flex-direction:column; gap:10px;">
+        <button id="migrate-confirm-btn" class="btn-primary" style="height:46px;">
+          Migrate Data & Sync to Account
+        </button>
+        <button id="migrate-dismiss-btn" class="btn-secondary" style="height:42px; border-color:transparent; color:var(--text-muted);">
+          Start Fresh (Clear Browser Data)
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- QuaggaJS: Barcode detection -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/quagga/0.12.1/quagga.min.js"></script>
+
+  <!-- Tesseract.js: Ingredient OCR -->
+  <script src="https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js"></script>
+
+  <!-- Ingredient Scanner & Alternatives modules -->
+  <script src="/ingredient-database.js"></script>
+  <script src="/ingredient-parser.js"></script>
+  <script src="/ingredient-matcher.js"></script>
+  <script src="/health-score.js"></script>
+  <script src="/alternatives-database.js"></script>
+  <script src="/alternatives-engine.js"></script>
+  <script src="/ingredient-ocr.js"></script>
+
+  <!-- Core Lavosia Engine & Router -->
+  <script type="module" src="/app.js"></script>
+</body>
+</html>

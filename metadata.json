@@ -1,0 +1,6 @@
+{
+  "name": "Lavosia",
+  "description": "Mobile nutrition and fitness tracker with Apple Fitness telemetry, Gemini-powered food image analysis, and smart pantry meal prep.",
+  "requestFramePermissions": ["camera"],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
